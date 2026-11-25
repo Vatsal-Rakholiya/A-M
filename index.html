@@ -247,15 +247,78 @@
  }
 
  .logo-lg {
-   position: fixed !important;
-   left: -20px;
-   bottom: 0;
-   width: 301.4px;
-   max-width: 42.24vw;
-   height: auto;
-   z-index: 100;
-   opacity: 1 !important;
-   transform: none !important;
+   display: none !important;
+ }
+
+ .text-block-parent .head {
+   color: #E7C58F !important;
+   filter: brightness(1.08);
+   opacity: var(--wedding-invitation-opacity, 1) !important;
+ }
+
+ .wedding-invitation-copy {
+   width: min(100%, 760px);
+   margin-top: 20px;
+   color: #F7F0E6;
+   font-family: "Noto Sans Gujarati", "Nirmala UI", sans-serif;
+   font-size: clamp(16px, 1.3vw, 18px);
+   line-height: 1.45;
+   text-align: center;
+   filter: brightness(1.08);
+ }
+
+ .wedding-invitation-copy p {
+   margin: 0 0 7px;
+ }
+
+ .wedding-invitation-copy .invitation-family {
+   font-size: 1.05em;
+   font-weight: 400;
+ }
+
+ .wedding-invitation-copy .invitation-title {
+   margin-top: 3px;
+   color: #E7C58F;
+   font-size: clamp(21px, 2.3vw, 29px);
+   font-weight: 700;
+   line-height: 1.2;
+ }
+
+ .wedding-invitation-copy .invitation-couple {
+   margin: 8px 0 12px;
+   color: #E8B7A5;
+   font-size: clamp(26px, 2.8vw, 34px);
+   font-weight: 700;
+   line-height: 1.2;
+ }
+
+ .wedding-invitation-copy .invitation-date {
+   color: #E7C58F;
+ }
+
+ .wedding-invitation-copy .invitation-host {
+   color: #F7F0E6;
+ }
+
+ @media (max-width: 600px) {
+   .wedding-invitation-copy {
+     margin-top: 14px;
+     font-size: clamp(15px, 4.1vw, 17px);
+     line-height: 1.4;
+   }
+
+   .wedding-invitation-copy .invitation-title {
+     font-size: clamp(19px, 5.5vw, 24px);
+   }
+
+   .wedding-invitation-copy .invitation-couple {
+     font-size: clamp(24px, 7vw, 29px);
+   }
+
+   .text-block-parent .head {
+     font-size: clamp(20px, 6.4vw, 25px) !important;
+     white-space: nowrap;
+   }
  }
 
  .key {
@@ -288,6 +351,34 @@
  .img-cast-4 {
    background-image: url("Barat.jpg");
  }
+
+ .gallery-container .grid-2 > .g-1,
+ .gallery-container .grid-2 > .g-2,
+ .gallery-container .grid-2 > .g-3,
+ .gallery-container .grid-2 > .g-4,
+ .gallery-container .grid-2 > .g-5,
+ .gallery-container .grid-2 > .g-6,
+ .gallery-container .grid-2 > .g-7,
+ .gallery-container .grid-2 > .g-8,
+ .gallery-container .grid-2 > .g-9,
+ .gallery-container .grid-2 > .g-10,
+ .gallery-container .grid-2 > .g-11 {
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+ }
+
+ .gallery-container .grid-2 > .g-1 { background-image: url("A_M_Pictures/g1.jpeg"); }
+ .gallery-container .grid-2 > .g-2 { background-image: url("A_M_Pictures/g2.jpeg"); }
+ .gallery-container .grid-2 > .g-3 { background-image: url("A_M_Pictures/g3.jpeg"); }
+ .gallery-container .grid-2 > .g-4 { background-image: url("A_M_Pictures/g4.jpeg"); }
+ .gallery-container .grid-2 > .g-5 { background-image: url("A_M_Pictures/g6.jpeg"); }
+ .gallery-container .grid-2 > .g-6 { background-image: url("A_M_Pictures/g7.jpeg"); }
+ .gallery-container .grid-2 > .g-7 { background-image: url("A_M_Pictures/g8.jpeg"); }
+ .gallery-container .grid-2 > .g-8 { background-image: url("A_M_Pictures/g9.jpeg"); }
+ .gallery-container .grid-2 > .g-9 { background-image: url("A_M_Pictures/g10.jpeg"); }
+ .gallery-container .grid-2 > .g-10 { background-image: url("A_M_Pictures/g11.jpeg"); }
+ .gallery-container .grid-2 > .g-11 { background-image: url("A_M_Pictures/g12.jpeg"); }
 
  .grid-1 {
    grid-template-rows: 1fr;
@@ -522,6 +613,60 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overflow-y: overlay;
+}
+
+.overlay-intro .text-block {
+  display: none !important;
+}
+
+body::before {
+  --logo-target-width: min(30vw, 180px);
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483647;
+  width: min(42vw, 260px);
+  aspect-ratio: 3 / 4;
+  opacity: 1;
+  transform-origin: bottom left;
+  transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+  background: url("Elegant%20White%20Floral%20Wedding%20Invitation%20Logo.png") center / contain no-repeat;
+  transition: opacity .6s cubic-bezier(.4, 0, .2, 1);
+  pointer-events: none;
+}
+
+body.logo-scrolled::before {
+  opacity: 0;
+}
+
+body.logo-transition::before {
+  animation: floral-logo-to-home 2s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+
+@keyframes floral-logo-to-home {
+  0% {
+    transform: translate(calc(50vw - 50%), calc(50vh - 50%)) scale(1);
+  }
+  100% {
+    width: var(--logo-target-width);
+    transform: translate(clamp(16px, 3vw, 36px), calc(100vh - 100% - 8px));
+  }
+}
+
+@media (max-width: 600px) {
+  body::before {
+    --logo-target-width: min(40vw, 145px);
+    width: min(58vw, 220px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.logo-transition::before {
+    animation: none;
+    width: var(--logo-target-width);
+    transform: translate(clamp(16px, 3vw, 36px), calc(100vh - 100% - 8px));
+  }
 }
 
 
@@ -873,6 +1018,116 @@ function myFunction() {
     viewer.addEventListener("cancel", function (event) {
       event.preventDefault();
     });
+  })();
+</script>
+<script>
+  (function () {
+    var body = document.body;
+    var prayerSection = document.querySelector(".text-block-parent");
+    var eventsSection = document.querySelector("#goonies");
+    var overlay = document.querySelector(".overlay-intro");
+
+    if (prayerSection && eventsSection && prayerSection.parentNode === eventsSection.parentNode) {
+      eventsSection.parentNode.insertBefore(prayerSection, eventsSection);
+    }
+
+    var copyLink = prayerSection && prayerSection.querySelector(".copy-link");
+    if (copyLink && !copyLink.querySelector(".wedding-invitation-copy")) {
+      var invitationCopy = document.createElement("div");
+      invitationCopy.className = "wedding-invitation-copy";
+      invitationCopy.setAttribute("lang", "gu");
+
+      function addInvitationLines(className, lines, boldLines) {
+        var paragraph = document.createElement("p");
+        paragraph.className = className;
+
+        lines.forEach(function (line, index) {
+          if (boldLines[index]) {
+            var boldText = document.createElement("strong");
+            boldText.textContent = line;
+            paragraph.appendChild(boldText);
+          } else {
+            paragraph.appendChild(document.createTextNode(line));
+          }
+
+          if (index < lines.length - 1) {
+            paragraph.appendChild(document.createElement("br"));
+          }
+        });
+
+        invitationCopy.appendChild(paragraph);
+      }
+
+      addInvitationLines("invitation-family", [
+        "સંખલા પરિવાર તથા રાવાણી પરિવાર",
+        "સહર્ષ આમંત્રણ પાઠવે છે"
+      ], [false, false]);
+      addInvitationLines("invitation-title", ["॥ शुभ विवाह ॥"], [true]);
+      addInvitationLines("invitation-couple", ["મિષિતા સંગે અર્થ"], [true]);
+      addInvitationLines("invitation-message", [
+        "ના શુભ લગ્નપ્રસંગે આપ સૌને",
+        "સપરિવાર પધારવા ભાવભર્યું આમંત્રણ છે."
+      ], [false, false]);
+      addInvitationLines("invitation-date", [
+        "ગુરુવાર, તા. ૧૧ ફેબ્રુઆરી, ૨૦૨૭"
+      ], [true]);
+      addInvitationLines("invitation-host", ["નિમંત્રક"], [true]);
+      addInvitationLines("invitation-family-names", [
+        "દક્ષાબેન ખીમજીભાઈ માધવજીભાઈ સંખલા",
+        "લક્ષ્મીબેન નરેન્દ્રભાઈ વેલજીભાઈ રાવાણી"
+      ], [false, false]);
+
+      copyLink.appendChild(invitationCopy);
+    }
+
+    var invitationHeading = copyLink && copyLink.querySelector(".head");
+    var invitationContent = copyLink && copyLink.querySelector(".wedding-invitation-copy");
+    if (invitationHeading && invitationContent) {
+      function syncInvitationAnimation() {
+        var headingOpacity = parseFloat(invitationHeading.style.opacity);
+        var syncedOpacity = Number.isFinite(headingOpacity)
+          ? String(1 - Math.pow(1 - Math.max(0, Math.min(1, headingOpacity)), 3))
+          : "1";
+        if (invitationHeading.style.getPropertyValue("--wedding-invitation-opacity") !== syncedOpacity) {
+          invitationHeading.style.setProperty("--wedding-invitation-opacity", syncedOpacity);
+        }
+        invitationContent.style.opacity = syncedOpacity;
+        invitationContent.style.transform = invitationHeading.style.transform || "none";
+        invitationContent.style.willChange = "opacity, transform";
+      }
+
+      syncInvitationAnimation();
+      var headingAnimationObserver = new MutationObserver(syncInvitationAnimation);
+      headingAnimationObserver.observe(invitationHeading, {
+        attributes: true,
+        attributeFilter: ["style"]
+      });
+      window.addEventListener("scroll", syncInvitationAnimation, { passive: true });
+    }
+
+    function transitionLogo() {
+      body.classList.add("logo-transition");
+    }
+
+    function updateLogoVisibility() {
+      body.classList.toggle("logo-scrolled", window.scrollY > 40);
+    }
+
+    window.addEventListener("scroll", updateLogoVisibility, { passive: true });
+    updateLogoVisibility();
+
+    if (!overlay) {
+      transitionLogo();
+      return;
+    }
+
+    var observer = new MutationObserver(function () {
+      if (!document.querySelector(".overlay-intro")) {
+        observer.disconnect();
+        transitionLogo();
+      }
+    });
+    observer.observe(body, { childList: true, subtree: true });
   })();
 </script>
 </body></html>
